@@ -1,16 +1,25 @@
 import socket
+import time
+
+cs = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+cs.connect((socket.gethostname(),5000))
+
+archivo = 'archivo.png'
+
+cs.send(b"archivo2")
+t1 = time.time()*1000
 
 
-TCP_IP = '127.0.0.1'
-TCP_PORT = 5005
-BUFFER_SIZE = 1024
-MESSAGE = b"hello,World"
 
-
-s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-s.connect((TCP_IP,TCP_PORT))
-s.send(MESSAGE)
-data = s.recv(BUFFER_SIZE)
-s.close()
-
-print ("Data: ", data)
+print("Recibiendo..")
+with open(archivo, 'wb') as fw:
+    while True:
+        data = cs.recv(1024)
+        if not data:
+            break
+        fw.write(data)
+    fw.close()
+    t2 = time.time()*1000
+print("Recibido")
+print(t2-t1)
+cs.close()
