@@ -4,6 +4,7 @@ import time
 ipMaquinaServidor = "13.92.208.121"
 
 cs = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+##Para probar localmente cambiar "ipMaquinaServidor" por socket.gethostname()
 cs.connect((ipMaquinaServidor,5000))
 
 archivo = 'archivo.png'
