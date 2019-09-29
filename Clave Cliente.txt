@@ -1,1 +1,2 @@
-Cliente!1Cliente
+Usuario: cliente
+Clave: Cliente!1Cliente
