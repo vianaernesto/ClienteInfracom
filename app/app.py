@@ -4,7 +4,7 @@ import hashlib
 import sys
 
 ipMaquinaServidor = "23.96.54.150"
-archivo = 'archivo.png'
+archivo = 'archivo.mkv'
 cs = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
 h = hashlib.sha256()
