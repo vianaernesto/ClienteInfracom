@@ -3,7 +3,7 @@ import time
 import hashlib
 import sys
 
-ipMaquinaServidor = "13.92.208.121"
+ipMaquinaServidor = "23.96.54.150"
 archivo = 'archivo.png'
 cs = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
