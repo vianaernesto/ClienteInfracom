@@ -11,7 +11,7 @@ h = hashlib.sha256()
 
 print("Cliente iniciado")
 ##Para probar localmente cambiar "ipMaquinaServidor" por socket.gethostname()
-cs.connect(ipMaquinaServidor,5000))
+cs.connect((ipMaquinaServidor,5000))
 print("Cliente conectandose")
 cs.send(b"syn")
 ack = cs.recv(2048)
