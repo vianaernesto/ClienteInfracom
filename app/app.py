@@ -11,10 +11,10 @@ h = hashlib.sha256()
 
 print("Cliente iniciado")
 ##Para probar localmente cambiar "ipMaquinaServidor" por socket.gethostname()
-cs.connect((socket.gethostname(),5000))
+cs.connect(ipMaquinaServidor,5000))
 print("Cliente conectandose")
 cs.send(b"syn")
-ack = cs.recv(1024)
+ack = cs.recv(2048)
 if(ack == b"ack"):
     print("Cliente Conectado")
     cs.send(b"Preparado")
@@ -22,14 +22,14 @@ else:
     print("Cliente no se pudo conectar")
     cs.close()
 
-t1 = time.time()*1000
 print("Recibiendo..")
 with open(archivo, 'wb') as fw:
     while True:
         ##Esto es para que no sea bloqueante
         cs.settimeout(1)
+        t1 = time.time()*1000
         try:
-            data = cs.recv(1024)
+            data = cs.recv(2048)
             h.update(data)
             fw.write(data)
             if not data:
@@ -42,7 +42,7 @@ with open(archivo, 'wb') as fw:
             break
     fw.close()
 print("Hash obtenido del archivo recibido",h.digest())
-hrecibido = cs.recv(1024)
+hrecibido = cs.recv(2048)
 print("Hash recibido desde el servidor:  ",hrecibido)
 if(hrecibido == h.digest()):
     cs.send(b"Recibido")
